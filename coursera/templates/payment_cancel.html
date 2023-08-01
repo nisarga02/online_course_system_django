@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #ff0000;
+    }
+    
+    p {
+      color: #333333;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color:  #525FE1;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    
+    .button:hover {
+      background-color:  #757bc4;
+    }
+  </style>
+
+  <h1>Payment Failed</h1>
+  <p>We're sorry, but your payment could not be processed.</p>
+  <p>Please check your payment information and try again later.</p>
+  <p>If you believe this is an error, please contact customer support.</p>
+  <a href="/" class="button">Go back to homepage</a>
+  {% endblock %}

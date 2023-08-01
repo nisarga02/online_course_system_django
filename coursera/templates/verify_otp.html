@@ -1,0 +1,53 @@
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- ... -->
+<form id="otp-form">
+  {% csrf_token %}
+  {{ otp }}
+  <!-- Other form fields -->
+  <input type="text" name="otp" id="otp">
+  <button  class="btn btn-pill text-white btn-block btn-primary" id="otp-submit">Submit</button>
+</form>
+<div id="otp-error-msg" class="alert alert-danger" style="display: none; color:red;">
+  Invalid OTP. Please try again.
+</div>
+<!-- ... -->
+
+{% block scripts %}
+<script>
+  $(document).ready(function() {
+    $('#otp-submit').click(function(event) {
+      event.preventDefault(); // Prevent the form submission
+
+      let otp = $('#otp').val();
+      console.log("OTP: ", otp);
+
+      if (otp === '{{ otp }}') {
+        console.log("OTP Matched");
+
+        $.ajax({
+          type: "POST",
+          url: '{% url "verify_otp" %}',
+          data: {
+            'otp': '{{ otp }}',
+            'first_name': '{{ first_name }}',
+            'last_name': '{{ last_name }}',
+            'username': '{{ username }}',
+            'email': "{{ email }}",
+            'password1': "{{ password1 }}",
+            'password2': "{{ password2 }}",
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+          },
+          success: function(data) {
+            alert("OTP matched successfully. Please log in.");
+            window.location.href = "{% url 'login' %}";
+          }
+        });
+      } else {
+        alert("OTP does not match.")
+        $('#otp-error-msg').show();
+      }
+    });
+  });
+</script>
+{% endblock %}

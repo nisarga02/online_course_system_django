@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<style>
+
+.form-container {
+  max-width: 400px; 
+  margin: 0 auto; 
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f2f2f2; 
+  border-radius: 10px;
+  margin-top: 40px; 
+}
+
+/* Styling for form elements */
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 60%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container button[type="submit"] {
+  background-color: #525FE1; 
+  color: #fff; 
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block; 
+  margin: 0 auto;  
+
+}
+
+.form-container a {
+  color: #525FE1;
+  text-decoration: none;
+}
+
+.form-container a:hover {
+  text-decoration: underline;
+}
+
+h4 {
+  text-align: center;
+}
+    
+
+</style>
+
+<div class="form-container">
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <button type="submit">Login</button> 
+  <h4>Forgot your password? <a href="{% url 'reset_password' %}">Click here</a></h4>
+</form>
+</div>
+
+{% endblock %}

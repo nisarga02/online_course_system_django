@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    /* Styling for the container */
+.form-container {
+    max-width: 400px; /* Adjust the maximum width as per your design */
+    margin: 0 auto; /* Center the container horizontally */
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f2f2f2; /* Set your desired background color for the container */
+    border-radius: 10px; /* Add rounded corners to the container */
+  }
+  
+  /* Styling for the button */
+  .form-container button[type="submit"] {
+    background-color: #525FE1; /* Set the button color to #525FE1 */
+    color: #fff; /* Set the text color to white */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Add this to make the button a block-level element */
+    margin: 0 auto; /* Center the button horizontally */
+  }
+  
+  /* Optional: Style the form input fields */
+  .form-container input[type="text"],
+  .form-container input[type="email"],
+  .form-container input[type="password"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form-container input[type="email"]
+  {
+    margin-left :28px !important; 
+  }
+
+  .form-container a {
+    color: #525FE1;
+    text-decoration: none;
+  }
+  
+  .form-container a:hover {
+    text-decoration: underline;
+  }
+  
+  h4 {
+    text-align: center;
+  }
+    
+  
+</style>
+
+<div class="form-container">
+    <h1>Teacher Registration</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+        <h4>Already have an account? <a href="{% url 'login' %}">Login</a></h4>
+    </form>
+    <p style="color:#676262;font-style:italic">password must contains 8 characters , one uppercase, one lowercase, one symbol and one digit </p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+<style>
+   .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #F86F03;
+      padding: 10px 20px;
+      position: fixed; 
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      right: 0;
+
+    }
+  
+    .nav-left span {
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  
+    .nav-right ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .nav-right li {
+      display: inline;
+      margin-right: 20px;
+    }
+  
+    .nav-right a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  
+    .nav-right .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #F86F03; /* Purple color */
+      padding: 14px;
+      margin: 0px 50px;
+      z-index: 1;
+    }
+  
+    .nav-right .dropdown-content li {
+      margin: 20px 0;
+    }
+  
+    .nav-right .dropdown-content a {
+      color: #fff;
+      text-decoration: none;
+      display: block; /* Display list items one by one */
+      padding: 5px 5px;
+    }
+  
+    .nav-right .dropdown-content a:hover {
+      background-color: #fff; /* Light blue color on hover */
+      color: #F86F03;
+
+    }
+  
+    .nav-right .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    
+</style>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <span>OCS</span>
+    </div>
+    <div class="nav-right">
+      <ul>
+        {% if user.is_authenticated %}
+        <li>
+          {% if user.is_teacher %}
+            <a href="{% url 'teacher_dashboard' %}"> Teacher Dashboard</a>
+          {% elif user.is_student %}
+            <a href="{% url 'student-dashboard' %}">Student Dashboard</a>
+          {% endif %}
+        </li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+
+        <li class="dropdown">
+          <a href="#">Register</a>
+          <ul class="dropdown-content">
+            <li><a href="{% url 'student_register' %}">Student</a></li>
+            <li><a href="{% url 'teacher_register' %}">Teacher</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</body>

@@ -1,0 +1,81 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+   body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #00cc00;
+    }
+    
+    p {
+      color: #333333;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #333333;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    
+    .button:hover {
+      background-color: #555555;
+    }
+    
+    .receipt {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .receipt p {
+      margin-bottom: 10px;
+    }
+
+    button {
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  
+    
+  .buttons {
+   background-color: #525FE1;
+   color: #fff;
+ }
+</style>
+<div class="container">
+<h1>Payment Successful</h1>
+<p>Thank you for your payment. Your transaction has been completed successfully.</p>
+<p>Here is your receipt:</p>
+<div class="receipt">
+  <h2>Receipt</h2>
+  <p>Invoice Number: {{payment.transaction_id}}</p>
+  <p>Item: {{ course.title }}</p>
+  <p>Amount: {{ course.price }}₹</p>
+</div>
+<a href="{% url 'course_details' pk=course.pk %}"><button class="buttons">View Course</button></a>
+<p>To access your course "{{ course.title }}", please check the "course_details" section.</p>
+<p>If you have any questions, please contact our customer support.</p>
+
+</div>
+{% endblock %}

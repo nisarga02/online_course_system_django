@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Purchase Course</h2>
+
+  <h3>Course: {{ course.title }}</h3>
+  <p>Description: {{ course.description }}</p>
+  <p>Price: {{ course.price }}</p>
+
+  <form method="post" action="{% url 'purchase_course' course.pk %}">
+    {% csrf_token %}
+    <!-- Include any additional fields or form elements required for the purchase process -->
+    <!-- For example, credit card information, billing address, etc. -->
+    <button type="submit">Purchase</button>
+  </form>
+{% endblock %}
