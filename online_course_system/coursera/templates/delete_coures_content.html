@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    button {
+        background-color: #3A49B7; 
+        color: white;
+        padding: 8px 14px;
+        border-radius: 7px;
+    }
+
+    form a {
+        display: inline-block;
+         margin-top: 10px; 
+         text-decoration:
+          none; color: 
+          #3A49B7; border: 
+          2px solid #3A49B7; 
+          padding: 6px 10px;
+          border-radius: 7px;
+    }
+
+    .container {
+        max-width: 90%; /* Adjust the maximum width as per your design */
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 20px;
+        background-color: #fff; /* Set your desired background color for the container */
+        border-radius: 10px; /* Add rounded corners to the container */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+        max-width: 90%; 
+        margin: 0 auto;
+        margin-top: 80px;
+    }
+</style>
+
+    <div class="container">
+    <h1>Delete Course Content</h1>
+
+    <p>Are you sure you want to delete this course content?</p>
+
+    <p><strong>Content:</strong> {{ content }}</p>
+
+    <form method="POST" action="{% url 'delete_course_content' content.id %}">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+      <a href="{% url 'teacher_dashboard' %}">Go Back</a>
+
+    </form>
+  </div>
+
+{% endblock %}
+  

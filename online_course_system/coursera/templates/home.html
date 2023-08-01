@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  /* Optional custom CSS (for styling purposes) */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .custom-container {
+    text-align: center;
+    margin: 0;
+  }
+
+  .tablet-button {
+    margin-top: 15px;
+    padding: 15px 35px;
+    background-color: #525FE1; 
+    color: #e9effd;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .tablet-button:hover {
+    background-color: #F86F03;
+    text-decoration: none;
+  }
+
+
+  .custom-column2 img {
+    width: 40%; /* Set image width to 40% */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 15px; /* Add space between image and button */
+  }
+</style>
+<body>
+  <div class="custom-container">
+    <div class="custom-column2">
+      <img src="{% static 'bg.jpg' %}"  >
+    </div>
+    <div class="center-container">
+      <a class="tablet-button" href="{% url 'login' %}">Get started</a>
+    </div>
+  </div>
+   
+</body>
+
+
+
+{% endblock content %}

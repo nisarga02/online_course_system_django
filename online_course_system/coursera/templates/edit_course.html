@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+/* Styling for the container */
+.container {
+    max-width: 90%; /* Adjust the maximum width as per your design */
+    margin: 0 auto; /* Center the container horizontally */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff; /* Set your desired background color for the container */
+    border-radius: 10px; /* Add rounded corners to the container */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+  
+  /* Styling for headings */
+  .container h1, .container h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for the forms */
+  .container form {
+    margin-bottom: 20px;
+  }
+  
+  .container form button[type="submit"] {
+    background-color: #525FE1; /* Set the button color to #525FE1 */
+    color: #fff; /* Set the text color to white */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .container form button[type="submit"]:hover {
+    background-color: #3A49B7; /* Darken the button color on hover */
+  }
+  
+  /* Optional: Adjust form input fields if needed */
+  .container form input[type="text"],
+  .container form input[type="file"]
+   {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .container form textarea {
+    width: 75%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  
+  }
+
+  .anchor {
+    display: inline-block;
+     margin-top: 10px; 
+     text-decoration:
+      none; color: 
+      #3A49B7; border: 
+      2px solid #3A49B7; 
+      padding: 6px 10px;
+      border-radius: 7px;
+}
+  
+</style>
+
+<div class="container">
+    <h2>Update Course</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"> <a style="text-decoration: none;color:#fff" href="{% url 'teacher_dashboard' %}">Update</a></button> &nbsp;
+        </form>
+
+</div>
+
+{% endblock %}
