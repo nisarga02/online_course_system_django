@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 
@@ -85,15 +86,20 @@ WSGI_APPLICATION = 'online_course_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Courses',
+#         'USER': 'postgres',
+#         'PASSWORD':'1234',
+#         'HOST':'localhost',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Courses',
-        'USER': 'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost',
-    }
+    "default":dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
 
 
 # Password validation
@@ -131,6 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+
 STATICFILES_DRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
@@ -141,15 +149,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'coursera.User'
 
 
+#email configurations
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Specify the SMTP host for your email provider
+EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587  # Specify the SMTP port for your email provider
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'nisargacm02@gmail.com'  # Update with your email address
 EMAIL_HOST_PASSWORD = 'nhoibcygsewhqaap'
 DEFAULT_FROM_EMAIL = 'nisargacm02@gmail.com'
 
 
+
+#paypal configurations
 PAYPAL_RECEIVER_EMAIL = "biznisargacm@gmail.com"
 PAYPAL_TEST = True
 

@@ -1,34 +1,28 @@
-from django.shortcuts import render, redirect,get_object_or_404
-from django.views import View
-from django.contrib.auth import get_user_model
-from .forms import StudentRegistrationForm, TeacherRegistrationForm,LoginForm, CourseForm ,CourseContentForm
-from .models import Student, Teacher,Course, CourseContent ,Payment
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.contrib.auth import authenticate , login,logout
-from django.contrib import messages
-from django.core.mail import send_mail
-from online_course_system.settings import EMAIL_HOST_USER
-import random
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
-import random
-from django.utils import timezone
-from django.core.mail import send_mail
-from django.urls import reverse
-import uuid
-from datetime import date,datetime
-from django.contrib.auth import views as auth_views
-from django.contrib.auth.forms import PasswordResetForm
-from online_course_system import settings
-from decimal import Decimal
-import paypalrestsdk
-from django.utils.crypto import get_random_string
 import random
 import string
+import paypalrestsdk
+
+from .forms import *
+from .models import *
+
+from django.views import View
+from django.urls import reverse
 from django.conf import settings
+from django.utils import timezone
+from django.contrib import messages
+from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+from django.contrib.auth import views as auth_views
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect,get_object_or_404
+from django.contrib.auth import authenticate , login,logout,get_user_model
+
+from online_course_system import settings
+from online_course_system.settings import EMAIL_HOST_USER
 
 User = get_user_model()
 
@@ -193,7 +187,7 @@ class LoginView(View):
                     return redirect('student-dashboard')
             else:
                 messages.error(request, 'Invalid username or password.')
-                return redirect('home')
+                # return redirect('home')
 
         return render(request, 'login.html', {'form': form})
 

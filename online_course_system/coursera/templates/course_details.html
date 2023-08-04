@@ -7,6 +7,8 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;
     margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
   }
 
   /* Style the buttons */
@@ -28,7 +30,7 @@
   }
 
   #continue-learning {
-    background-color: #2196F3;
+    background-color: #1c378e;
     margin-bottom: 50px !important;
   }
 
@@ -38,6 +40,7 @@
   }
 
   .card {
+    border-top: 5px solid #1c378e !important;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
@@ -45,12 +48,18 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
+  .contain {
+    padding: 30px 30px 0px 30px;
+  }
+  
+  body {
+    padding: 20px;
+  }
+
 
 </style>
 
-<h3>Course details</h3>
-
-
+<div class="contain">
 <h1>Course details</h1>
 
 <p>Name: {{ course.title }}</p>
@@ -59,24 +68,30 @@
 <p>Posted date: {{ course.post_date }}</p>
 <p>Instructor name: {{ course.Instructor }}</p>
 <p>Price: {{ course.price }}</p>
+</div>
+
 
 {% if purchased %}
 
-<h2>Course Contents:</h2>
+<h2 style="padding-left: 20px;">Course Contents:</h2>
 
   <div class="container">
-    {% for content_item in content %}
-      <div class="card">
-          <h4>{{ content_item.name }}</h4>
-          <p>{{ content_item.body }}</p>
-          <p>{{content_item.url}}</p>
-      </div>
-    {% endfor %}
+    {% if content %}
+      {% for content_item in content %}
+        <div class="card">
+            <h4 style="font-size:18px;text-transform: capitalize;">{{ content_item.name }}</h4>
+            <p style="text-transform: capitalize;">{{ content_item.body }}</p>
+            <p>{{content_item.url}}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+    <p style="color: #acacac;padding-left:32px;"><i>No contents are available for this course yet!!!</i></p>
+    {% endif %}
   </div>
 
   <button id="continue-learning" > <a style="text-decoration: none;color:#fff;" href="{% url 'student-dashboard' %} ">Continue Learning</a></button>
 {% else %}
-  <p>Please purchase the course to access the content.</p>
+  <p style="color: #acacac;padding-left:32px;"><i>Please purchase the course to access the content.</i></Please></p>
   <form action="{% url 'purchase_course' course.pk %}" method="POST">
     {% csrf_token %}
     <button type="submit" class="buttons">Purchase Course</button>

@@ -71,7 +71,7 @@
     form input[type="text"],
     form input[type="url"],
     form textarea {
-        width: 90%;
+        width: 50%;
         padding: 8px;
         margin-bottom: 10px;
         border: 1px solid #ccc;
@@ -83,13 +83,15 @@
         min-height: 100px;
     }
     .content-card {
+        border-top: 5px solid #1c378e !important;
         border: 1px solid #ccc;
         border-radius: 4px;
         padding: 15px;
-        margin-bottom: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         background-color: #f8f8f8;
- 
+        width: 80%;
+        margin-bottom: 15px !important;
+        padding-bottom: 15px !important;
     }
 
     .content-card strong {
@@ -100,7 +102,7 @@
         margin-right: 5px;
         text-decoration: none;
         color: #fff;
-        margin-bottom: 5px !important;
+        margin-bottom: 15px !important;
     }
 
 
@@ -135,8 +137,8 @@
     {% if coursecontents %}
         {% for content in coursecontents %}
         <div class="content-card">
-            <strong>{{ content.name }}</strong>
-            <p>{{ content.body }}</p>
+            <strong style="font-size: 20px;text-transform:capitalize;">{{ content.name }}</strong>
+            <p style="font-size: 16px;text-transform:capitalize;">{{ content.body }}</p>
             <a href="{% url 'update_course_content' content.id %} " class="update">Edit</a>
             <a href="{% url 'delete_course_content' content.id %}" class="delete">Delete</a>
         </div>

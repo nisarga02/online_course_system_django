@@ -50,12 +50,14 @@
   
   /* Styling for the course list */
   .course-cards {
+    
     display: flex;
     flex-wrap: wrap;
   }
   
   .course-card {
-    width: 100%; /* Adjust the width as per your design */
+    border-top: 5px solid #1c378e !important;
+    width: 80%; /* Adjust the width as per your design */
     margin: 10px;
     padding: 15px;
     background-color: #fff;
@@ -72,6 +74,15 @@
     margin-top: 10px;
   }
   
+  form input[type="text"],
+  form input[type="number"],
+  form textarea {
+      width: 30%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
 </style>
 <div class="dashboard-container">
 
